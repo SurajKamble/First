@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to GITerest</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/one.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha38
+                       4-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity=
+               "sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/static/css/animate.css">
+</head>
+
+<body>
+
+<script> $(document).ready(function(){
+    $("button").addClass("animated bounce");
+    $("input").addClass("animated shake");
+    $(".header2").addClass("animated shake")});
+
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 header">
+        <h1 style="font-family: 'Lucida Fax'; font-size: 15pt">Find people with similar interests around you</h1>
+    </div>
+    <div class="col-md-4 logo">
+        <a href="{{ url_for('home') }}">
+        <img class="image-responsive" src="http://www.designmantic.com/create_thumb?id=144&company=GITerest&slogan=" alt="GITerest" style="width:304px;height:228px;">
+        </a>
+    </div>
+    <div class="col-md-4 header1" style="font-family: 'Lucida Fax'; font-size: 12pt">
+        <ul>
+            <li>Post what you are learning</li>
+            <li>Find people to learn together</li>
+            <li>Also Find people you can learn from</li>
+        </ul>
+    </div>
+    </div>
+
+<div class="signup">
+    <h2 class="header2">
+    Sign Up for GITerest!
+</h2>
+<form method="post" action="{{ url_for('signup') }}">
+
+    <input type="text" name="firstName" placeholder="First Name" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required>
+    <input type="text" name="lastName" placeholder="Last Name" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
+    <input type="text" name="email" placeholder="Email" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
+    <input type="text" name="username" placeholder="Username" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
+    <input type="text" name="password" placeholder="Password" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
+    <input type="text" name="re-password" placeholder="Re-enter Password" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
+    <button class="btn" type="submit" style="font-family: 'Lucida Fax'; color: white; font-size: 12pt;height: 35px;width: 120px">Sign Up!</button>
+
+</form>
+    </div>
+<script> $(document).ready(function(){
+    $("button").addClass("animated bounce");});
+</script>
+</div>
+
+</body>
+
+</html>

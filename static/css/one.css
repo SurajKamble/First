@@ -1,0 +1,77 @@
+.col-md-4{
+    top: 20px;
+}
+.header2{
+    color: #4dc247;
+}
+.signup{
+    text-align: center ;
+}
+
+form{
+
+    padding-top: 20px;
+}
+input{
+    border-radius: 5px;
+    border: 0px;
+}
+button {
+    border-radius: 5px;
+    background-color: #dd4b39;
+}
+.header{
+    top: 80px;
+    left: 60px;
+    color: #3b5998;
+
+}
+.logo{
+    text-align: center;
+
+}
+.header1{
+    top: 80px;
+    color: #dd4b39;
+
+}
+h2{
+    text-align: center;
+}
+
+
+/*
+.signup{
+    background-color: black;
+    color: black;
+    text-align: center;
+}
+
+.logo{
+    position: relative;
+    background-color: white;
+    padding-top: 20px;
+    text-align: center;
+    margin: -8px;
+}
+
+
+input{
+    border-radius: 5px;
+}
+button{
+    border-radius: 5px;
+    background: dodgerblue;
+    color: white;
+    text-align: center;
+}
+
+
+
+h2{
+    color: red;
+    text-align: center;
+
+}
+
+*/
