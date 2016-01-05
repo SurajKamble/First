@@ -2,13 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to GITerest</title>
-</head>
-<body>
-<p>Welcome {% for usernames in username %}
-        {{ usernames }}
-    {% endfor %}
+    <link rel="stylesheet" href="/static/css/logged_incss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-</p>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/static/css/animate.css">
+</head>
+
+<body>
+<div class="container-fluid whole">
+    <h2 class="welcome_header">
+     Welcome {{ namesignup }}. You're now a member of GITerest!
+</h2><br>
+
+    <p id="header2">
+        Let's see what you are interested in:
+    </p>
+
+  <ul class="nav nav-tabs bar">
+    <li class="active"><a data-toggle="tab" href="#cs">Computer Science</a></li>
+    <li><a data-toggle="tab" href="#gaming">Gaming</a></li>
+    <li><a data-toggle="tab" href="#music">Music</a></li>
+    <li><a data-toggle="tab" href="#elec">Electronics</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="cs" class="tab-pane fade in active">
+      <div class="jumbotron jumb">
+      <form method="post" name="tag_form" action="{{ url_for('addTags') }}">
+            {% for tag in cstags %}
+                <button name="tag_btn" type="submit" class="btn btn-primary tags" id="elecc" value="{{ tag.tag_name }}"
+                       onclick="{{ url_for('addTags') }}">{{ tag.tag_name }}</button>
+            {% endfor %}
+      </form>
+
+      </div>
+    </div>
+    <div id="gaming" class="tab-pane fade">
+      <div class="jumbotron jumb">
+            {% for tag in gamingtags %}
+                <button type="button" id="elecc" class="btn btn-success tags">
+                 {{ tag.tag_name }}</button>
+            {% endfor %}
+      </div>
+    </div>
+    <div id="music" class="tab-pane fade">
+      <div class="jumbotron jumb">
+            {% for tag in musictags %}
+                <button type="button" id="elecc" class="btn btn-danger tags">
+                 {{ tag.tag_name }}</button>
+            {% endfor %}
+      </div>
+    </div>
+    <div id="elec" class="tab-pane fade">
+      <div class="jumbotron jumb">
+            {% for tag in electags %}
+                <button type="button" id="elecc" class="btn btn-info tags">
+                 {{ tag.tag_name }}</button>
+            {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

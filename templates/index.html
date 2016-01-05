@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome to GITerest</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/one.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index_css.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha38
                        4-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -27,7 +27,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4 header">
-        <h1 style="font-family: 'Lucida Fax'; font-size: 15pt">Find people with similar interests around you</h1>
+        <h1 style="font-family: 'Lucida Fax'; font-size: 19pt">Find people with similar interests around you</h1>
     </div>
     <div class="col-md-4 logo">
         <a href="{{ url_for('home') }}">
@@ -43,25 +43,54 @@
     </div>
     </div>
 
+    <div class="signin">
+        {% if error %}
+        <p class="error">
+            {{ error }}
+        </p>
+        {% endif %}
+        <form method="post" action="{{ url_for('signin') }}">
+            <input type="email" name="emailsignin" placeholder="Email" size="43" style="font-family: 'Lucida Fax';
+            font-size: 12pt;height: 30px; width: 300px" required>
+            <input type="password" name="passwordsignin" placeholder="Password" size="43"
+                   style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px; width: 250px" required>
+            <button type="submit" style="font-family: 'Lucida Fax'; color: white; font-size: 12pt;height: 30px;
+            width: 100px">Sign in</button>
+        </form>
+    </div>
 
 <div class="signup">
     <h2 class="header2">
     Sign Up for GITerest!
-</h2>
+    </h2>
 
-<form method="post" action="{{ url_for('signup') }}">
+    <form method="post" action="{{ url_for('signup') }}" onsubmit="return checkForm(this)">
 
-    <input type="text" name="firstName" placeholder="First Name" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required>
-    <input type="text" name="lastName" placeholder="Last Name" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
-    <input type="email" name="email" placeholder="Email" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
-    <input type="password" name="password" placeholder="Password" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
-    <input type="password" name="re-password" placeholder="Re-enter Password" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
-    <button class="btn" type="submit" style="font-family: 'Lucida Fax'; color: white; font-size: 12pt;height: 35px;width: 120px">Sign Up!</button>
-
-</form>
+    <input type="text" name="firstName" placeholder="First Name" style="font-family: 'Lucida Fax';font-size: 12pt;
+    height: 30px" required>
+    <input type="text" name="lastName" placeholder="Last Name" style="font-family: 'Lucida Fax';font-size: 12pt;
+    height: 30px" required><br><br>
+    <input type="email" name="email" placeholder="Email" size="43" style="font-family: 'Lucida Fax';font-size: 12pt;
+    height: 30px" required><br><br>
+    <input type="password" name="password1" placeholder="Password" size="43" style="font-family: 'Lucida Fax';
+    font-size: 12pt;height: 30px" required><br><br>
+    <input type="password" name="password2" placeholder="Re-enter Password" size="43"
+           style="font-family: 'Lucida Fax';font-size: 12pt;height: 30px" required><br><br>
+    <button class="btn" type="submit" style="font-family: 'Lucida Fax'; color: white; font-size: 12pt;height: 35px;
+    width: 120px">Sign Up!</button>
+    </form>
     </div>
+
+
 <script> $(document).ready(function(){
     $("button").addClass("animated bounce");});
+    function checkForm(form){
+        if(form.password1.value != form.password2.value){
+            (alert("Make sure you have entered the same password"));
+            form.password2.focus();
+            return false;
+        }
+    }
 </script>
 </div>
 
