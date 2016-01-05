@@ -11,7 +11,7 @@ manager.add_command("shell", Shell())
 @manager.command
 def createdb():
     from models import db, User, Tags, CsTags, ElecTags, MusicTags, GamingTags
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
 
     cstags = [CsTags("Flask"), CsTags("Web Development"), CsTags("Algorithms"), CsTags("Artificial Intelligence"),

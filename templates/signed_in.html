@@ -6,7 +6,10 @@
 </head>
 <body>
 <p>
-    Welcome {{ Name }}
+    Welcome {{ Name }}. You are interested in
+    {% for tag in userTags1 %}
+    {{ tag }}
+    {% endfor %}
 </p>
 </body>
 </html>

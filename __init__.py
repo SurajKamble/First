@@ -3,7 +3,6 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'Suraj'  # Really Important line
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.db'
-app.jinja_env.globals.update(addTags=addTags)
 
 
 @app.route('/')
@@ -60,9 +59,13 @@ def signin():
     emailsignin = request.form['emailsignin']
     passwordsignin = request.form['passwordsignin']
     user1 = User.query.filter_by(email=emailsignin).first_or_404()
-
+    userTags1 = []
     if user1.password1 == passwordsignin:
-        return render_template('signed_in.html', Name=user1.firstName+" "+user1.lastName)
+        userTags = user1.tags.all()
+        for tags in userTags:
+            userTags1.append(tags.tag_name)
+            print(tags.tag_name)
+        return render_template('signed_in.html', Name=user1.firstName+" "+user1.lastName, userTags1=userTags1)
     else:
         error = "Incorrect Password!"
         return render_template('index.html', error=error)
