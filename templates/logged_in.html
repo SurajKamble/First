@@ -29,23 +29,22 @@
     <li><a data-toggle="tab" href="#music">Music</a></li>
     <li><a data-toggle="tab" href="#elec">Electronics</a></li>
   </ul>
+    <form method="post" name="tag_form" action="{{ url_for('addTags') }}">
 
   <div class="tab-content">
     <div id="cs" class="tab-pane fade in active">
       <div class="jumbotron jumb">
-      <form method="post" name="tag_form" action="{{ url_for('addTags') }}">
             {% for tag in cstags %}
                 <button name="tag_btn" type="submit" class="btn btn-primary tags" id="elecc" value="{{ tag.tag_name }}"
                        onclick="{{ url_for('addTags') }}">{{ tag.tag_name }}</button>
             {% endfor %}
-      </form>
 
       </div>
     </div>
     <div id="gaming" class="tab-pane fade">
       <div class="jumbotron jumb">
             {% for tag in gamingtags %}
-                <button type="button" id="elecc" class="btn btn-success tags">
+                <button name="tag_btn" type="submit" id="elecc" class="btn btn-success tags" value="{{ tag.tag_name }}">
                  {{ tag.tag_name }}</button>
             {% endfor %}
       </div>
@@ -53,7 +52,7 @@
     <div id="music" class="tab-pane fade">
       <div class="jumbotron jumb">
             {% for tag in musictags %}
-                <button type="button" id="elecc" class="btn btn-danger tags">
+                <button name="tag_btn" type="submit" id="elecc" class="btn btn-danger tags" value="{{ tag.tag_name }}">
                  {{ tag.tag_name }}</button>
             {% endfor %}
       </div>
@@ -61,13 +60,18 @@
     <div id="elec" class="tab-pane fade">
       <div class="jumbotron jumb">
             {% for tag in electags %}
-                <button type="button" id="elecc" class="btn btn-info tags">
+                <button name="tag_btn" type="submit" id="elecc" class="btn btn-info tags" value="{{ tag.tag_name }}">
                  {{ tag.tag_name }}</button>
             {% endfor %}
       </div>
     </div>
   </div>
+    <!--
+    Add here one submit button for the form, to send all the clicked tags to the addTags method.
+    -->
+    </form>
 </div>
+
 
 </body>
 </html>
