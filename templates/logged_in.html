@@ -29,9 +29,10 @@
     <li><a data-toggle="tab" href="#music">Music</a></li>
     <li><a data-toggle="tab" href="#elec">Electronics</a></li>
   </ul>
+
     <form method="post" name="tag_form" action="{{ url_for('addTags') }}">
 
-  <div class="tab-content">
+  <div class="tab-content one">
     <div id="cs" class="tab-pane fade in active">
       <div class="jumbotron jumb">
             {% for tag in cstags %}
@@ -69,6 +70,9 @@
     <!--
     Add here one submit button for the form, to send all the clicked tags to the addTags method.
     -->
+    <div class="done">
+    <button type="submit" class="btn btn-danger done_btn">Done!</button>
+        </div>
     </form>
 </div>
 
