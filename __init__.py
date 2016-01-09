@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from jinja2 import Environment, FileSystemLoader
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'Suraj'  # Really Important line
@@ -48,8 +49,34 @@ def message(namesignup):
     emails = []
     for x in users:
         emails.append(x.email)
+
     return render_template('logged_in.html', email=emails, namesignup=namesignup, cstags=cstags,
                            electags=electags, gamingtags=gamingtags, musictags=musictags)
+
+
+@app.route('/addTags', methods=['POST'])
+def addTags():
+    from models import User, Tags, db
+    user = User.query.filter_by(email=session.get('emailId')).first_or_404()
+    print(user.email)
+    tag = request.form['done_btn1']
+
+    print(tag.split(","))
+    tags = tag.split(",")
+    for tag in tags:
+        db.session.add(Tags(tag_name=tag, user=user))
+    db.session.commit()
+    userTags1 = user.tags.all()
+
+    for usertags in userTags1:
+        print(usertags.tag_name + ", ")
+
+    people = []
+    for user1 in User.query.all():
+        if user1.email != user.email:
+            people.append(user1)
+
+    return render_template('tagsAdded.html', user=user, tagsAdded=userTags1, people=people)
 
 
 @app.route('/signin', methods=['POST'])
@@ -71,19 +98,21 @@ def signin():
         return render_template('index.html', error=error)
 
 
-@app.route('/message', methods=['POST'])
-def addTags():
-    from models import User, Tags, db
-    user = User.query.filter_by(email=session.get('emailId')).first_or_404()
-    tag = request.form['tag_btn']
-    tags = Tags(tag_name=tag, user=user)
-    db.session.add(tags)
-    db.session.commit()
-    userTags = user.tags.all()
+@app.context_processor
+def utility_processor():
+    def clever_function():
+        from models import User, Tags, db
+        user = User.query.filter_by(email=session.get('emailId')).first_or_404()
+        print(user.firstName)
+        userTags3 = user.tags.all()
+        for tags in userTags3:
+            print(tags.tag_name)
 
-    for usertags in userTags:
-        print(usertags.tag_name)
+    return dict(clever_function=clever_function)
 
+
+def one():
+    print("Suraj Kamble")
 
 '''
 @app.route('/message1/<emailsignin>')
@@ -96,4 +125,4 @@ def message1(emailsignin, passwordsignin):
 '''
 
 if __name__ == '__main__':
-    app.run()
+    app.run()  # 192.168.200.54
