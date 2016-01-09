@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interests added!</title>
+    <link rel="shortcut icon" href="/static/css/icon.png" type="image/png">
+        <link rel="stylesheet" href="/static/css/tagsAdded_css.css">
+        <link rel="stylesheet" href="/static/css/logged_incss.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<div class="whole">
+
+  <h2 class="text">
+    Awesome {{ user.firstName }}!
+</h2>
+<p class="text">
+    Sounds great that you are interested in:
+</p>
+
+
+<div class="jumbotron jumba">
+        <ul>
+    {% for tags in tagsAdded %}
+    <li>{{ tags.tag_name }}</li>
+    {% endfor %}
+        </ul>
+</div>
+
+
+
+<div class=" jumbotron jumbb">
+<p>
+    People you may know:
+</p>
+        <ul>
+    {% for user in people %}
+    <li>{{ user.firstName+" "+user.lastName }}
+    <p>{{ " ("+user.email+")" }}</p></li>
+    {% endfor %}
+        </ul>
+
+</div>
+</div>
+</body>
+</html>

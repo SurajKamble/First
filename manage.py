@@ -12,7 +12,7 @@ manager.add_command("shell", Shell())
 def createdb():
     from models import db, User, Tags, CsTags, ElecTags, MusicTags, GamingTags
     # db.drop_all()
-    db.create_all()
+    db.create_all()  # Till Line 106 in example.db, the permanent database exists
 
     cstags = [CsTags("Flask"), CsTags("Web Development"), CsTags("Algorithms"), CsTags("Artificial Intelligence"),
               CsTags("Machine Learning"), CsTags("Java")]

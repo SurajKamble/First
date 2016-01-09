@@ -1,0 +1,36 @@
+.whole{
+    padding: 8px 10px -1px 10px;
+    background-color: #3b5998;
+    margin-top: -20px;
+}
+
+.text{
+    padding-left: 10px;
+    padding-top: 5px;
+    color: white;
+    font-family: "Lucida Fax";
+}
+.jumba{
+    float: left;
+    padding: 20px 40px 20px 20px;
+        margin: 20px 20px 20px 20px;
+    border-radius: 15px;
+
+}
+
+.jumbb{
+    float: right;
+    padding: 20px 20px 20px 20px;
+        margin: -70px 20px 20px 20px;
+    border-radius: 15px;
+}
+
+
+li{
+    font-size: 17px;
+    font-family: "Lucida Fax";
+    color: #dd4b39;
+
+}
+
+
