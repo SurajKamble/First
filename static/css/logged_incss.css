@@ -22,3 +22,17 @@ p{
     margin-right: 50px;
     color: black;
 }
+
+.bar{
+    margin-left: 40px;
+    margin-right: 150px;
+}
+
+.one{
+    float: left;
+}
+.done{
+    float: right;
+    margin: 0px 650px 20px 800px;
+}
+
