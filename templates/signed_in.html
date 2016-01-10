@@ -14,5 +14,10 @@
     {{ tag }}
     {% endfor %}
 </p>
+<div>
+    <form method="post" action="{{ url_for('signout') }}">
+        <button type="submit">Sign out</button>
+        </form>
+</div>
 </body>
 </html>

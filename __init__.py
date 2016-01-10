@@ -8,7 +8,21 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.db'
 
 @app.route('/')
 def home():
+    from models import User
     print("In Home")
+    if 'emailId' in session:
+        print(session['emailId'] + " in session")
+
+    if 'emailId' in session:
+        user = User.query.filter_by(email=session['emailId']).first_or_404()
+        print(user.email)
+        userTags1 = []
+        userTags = user.tags.all()
+        for tags in userTags:
+            userTags1.append(tags.tag_name)
+            print(tags.tag_name)
+        return render_template('signed_in.html', Name=user.firstName+" "+user.lastName, userTags1=userTags1)
+
     return render_template('index.html')
 
 
@@ -44,8 +58,6 @@ def message(namesignup):
     gamingtags = GamingTags.query.all()
     for tag in cstags:
         print(tag.tag_name)
-    db.session.commit()
-
     emails = []
     for x in users:
         emails.append(x.email)
@@ -81,48 +93,32 @@ def addTags():
 
 @app.route('/signin', methods=['POST'])
 def signin():
-    from models import User
+    from models import User, db
 
     emailsignin = request.form['emailsignin']
     passwordsignin = request.form['passwordsignin']
-    user1 = User.query.filter_by(email=emailsignin).first_or_404()
+    user = User.query.filter_by(email=emailsignin).first_or_404()
+    print(user.email)
     userTags1 = []
-    if user1.password1 == passwordsignin:
-        userTags = user1.tags.all()
+    if user.password1 == passwordsignin:
+        session['emailId'] = emailsignin
+        userTags = user.tags.all()
         for tags in userTags:
             userTags1.append(tags.tag_name)
             print(tags.tag_name)
-        return render_template('signed_in.html', Name=user1.firstName+" "+user1.lastName, userTags1=userTags1)
+        return render_template('signed_in.html', Name=user.firstName+" "+user.lastName, userTags1=userTags1)
     else:
         error = "Incorrect Password!"
         return render_template('index.html', error=error)
 
 
-@app.context_processor
-def utility_processor():
-    def clever_function():
-        from models import User, Tags, db
-        user = User.query.filter_by(email=session.get('emailId')).first_or_404()
-        print(user.firstName)
-        userTags3 = user.tags.all()
-        for tags in userTags3:
-            print(tags.tag_name)
+@app.route('/signout', methods=['POST'])
+def signout():
+    print("in signout method")
+    session.pop('emailId', None)
+    print("user removed")
+    return redirect(url_for('home'))
 
-    return dict(clever_function=clever_function)
-
-
-def one():
-    print("Suraj Kamble")
-
-'''
-@app.route('/message1/<emailsignin>')
-def message1(emailsignin, passwordsignin):
-    from models import User
-    user1 = User.query.filter_by(email=emailsignin).first_or_404()
-
-    if user1.passwordsignin == passwordsignin:
-        return render_template('signed_in.html', firstName=user1.firstName)
-'''
 
 if __name__ == '__main__':
-    app.run()  # 192.168.200.54
+    app.run(port=8000)  # 192.168.200.54
